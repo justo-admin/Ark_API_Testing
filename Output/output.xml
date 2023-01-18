@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.1 (Python 3.11.0 on win32)" generated="20230117 21:16:03.849" rpa="false" schemaversion="3">
+<suite id="s1" name="TestSuite" source="E:\Code\Ark_API_Testing\TestSuite\TestSuite.robot">
+<test id="s1-t1" name="Get Server Test" line="12">
+<kw name="GET" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${ARK_STAGE_SERVER}</arg>
+<doc>Sends a GET request.</doc>
+<msg timestamp="20230117 21:16:06.116" level="INFO">GET Request : url=https://app-stage.thearkofrevival.com/ 
+ path_url=/ 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230117 21:16:06.116" level="INFO">GET Response : url=https://app-stage.thearkofrevival.com/ 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 17 Jan 2023 15:46:09 GMT', 'Server': 'Apache/2.4.52 (Ubuntu)', 'X-XSS-Protection': '1;mode=block, 1; mode=block', 'Strict-Transport-Security': 'max-age=31536000; includeSubdomains;', 'X-Frame-Options': 'SAMEORIGIN', 'Upgrade': 'h2', 'Connection': 'Upgrade, Keep-Alive', 'Last-Modified': 'Tue, 17 Jan 2023 03:35:03 GMT', 'Accept-Ranges': 'bytes', 'Vary': 'Accept-Encoding', 'Content-Encoding': 'gzip', 'X-Content-Type-Options': 'nosniff', 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0', 'Content-Length': '3213', 'Keep-Alive': 'timeout=5, max=100', 'Content-Type': 'text/html'} 
+ body=&lt;!doctype html&gt;&lt;html lang="en"&gt;&lt;head&gt;&lt;meta charset="utf-8"/&gt;&lt;link rel="icon" href="/favicon.ico"/&gt;&lt;meta name="viewport" content="width=device-width,initial-scale=1"/&gt;&lt;meta name="theme-color" content="#26abbf"/&gt;&lt;meta name="description" content="Web site created using create-react-app"/&gt;&lt;link rel="apple-touch-icon" href="/favicon.ico"/&gt;&lt;script src="https://code.jquery.com/jquery-3.4.1.min.js"&gt;&lt;/script&gt;&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;&lt;link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet"&gt;&lt;title&gt;The Ark Connect | Admin Panel&lt;/title&gt;&lt;style&gt;*{margin:0;padding:0;box-sizing:border-box}body{width:100vw;height:100vh}div#root{height:100%;width:100%;display:flex;flex-direction:column}&lt;/style&gt;&lt;script defer="defer" src="/static/js/main.056b819b.js"&gt;&lt;/script&gt;&lt;link href="/static/css/main.936476dd.css" rel="stylesheet"&gt;&lt;/head&gt;&lt;body&gt;&lt;div id="root"&gt;&lt;div style="display:flex;align-items:center;justify-content:center;flex:1;height:100%;flex-direction:column"&gt;&lt;img src="data:image/png;base64,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" alt="ark logo" style="width:250px"/&gt;&lt;div style="font-size:20px;margin-top:20px"&gt;Loading...&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt; 
+ </msg>
+<msg timestamp="20230117 21:16:06.116" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230117 21:16:05.188" endtime="20230117 21:16:06.117"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>host_server</arg>
+<arg>${ARK_STAGE_SERVER}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230117 21:16:06.117" level="INFO">Creating Session using : alias=host_server, url=https://app-stage.thearkofrevival.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230117 21:16:06.117" endtime="20230117 21:16:06.118"/>
+</kw>
+<status status="PASS" starttime="20230117 21:16:05.186" endtime="20230117 21:16:06.118"/>
+</test>
+<test id="s1-t2" name="Register a New Member Test" line="141">
+<kw name="Log" library="BuiltIn">
+<arg>${new_member}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230117 21:16:06.122" level="INFO">{'firstName': 'TestUser', 'middleName': 'mid', 'lastName': 'One', 'email': 'testuser1@getnada.com', 'password': 'testuser@1', 'phone': '9911223301', 'dateOfBirth': '01-01-1990', 'gender': 'male', 'countryCode': '91', 'registeredFrom': 'direct', 'street': 'Test Street', 'city': 'New York', 'state': 'Montana', 'country': 'United States', 'zipcode': '123123'}</msg>
+<status status="PASS" starttime="20230117 21:16:06.122" endtime="20230117 21:16:06.122"/>
+</kw>
+<kw name="Get User From File" library="csv_pandas">
+<var>${mem_info}</var>
+<msg timestamp="20230117 21:16:06.136" level="INFO">Test Four  User Four  9000000004 TestUser4@getnada.com TestUser@4</msg>
+<msg timestamp="20230117 21:16:06.137" level="INFO">${mem_info} = ['Test Four ', 'User Four ', 9000000004, 'TestUser4@getnada.com', 'TestUser@4']</msg>
+<status status="PASS" starttime="20230117 21:16:06.123" endtime="20230117 21:16:06.137"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${mem_info}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230117 21:16:06.138" level="INFO">['Test Four ', 'User Four ', 9000000004, 'TestUser4@getnada.com', 'TestUser@4']</msg>
+<status status="PASS" starttime="20230117 21:16:06.137" endtime="20230117 21:16:06.138"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${new_member}</arg>
+<arg>firstName=${mem_info}[0]</arg>
+<arg>lastName=${mem_info}[1]</arg>
+<arg>email=${mem_info}[3]</arg>
+<arg>password=${mem_info}[4]</arg>
+<arg>phone=${mem_info}[2]</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20230117 21:16:06.139" endtime="20230117 21:16:06.140"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${new_member}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230117 21:16:06.141" level="INFO">{'firstName': 'Test Four ', 'middleName': 'mid', 'lastName': 'User Four ', 'email': 'TestUser4@getnada.com', 'password': 'TestUser@4', 'phone': 9000000004, 'dateOfBirth': '01-01-1990', 'gender': 'male', 'countryCode': '91', 'registeredFrom': 'direct', 'street': 'Test Street', 'city': 'New York', 'state': 'Montana', 'country': 'United States', 'zipcode': '123123'}</msg>
+<status status="PASS" starttime="20230117 21:16:06.141" endtime="20230117 21:16:06.141"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${REGISTER_MEMBER_HEADER}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230117 21:16:06.143" level="INFO">{'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230117 21:16:06.142" endtime="20230117 21:16:06.143"/>
+</kw>
+<status status="PASS" starttime="20230117 21:16:06.121" endtime="20230117 21:16:06.144"/>
+</test>
+<status status="PASS" starttime="20230117 21:16:03.851" endtime="20230117 21:16:06.147"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="TestSuite">TestSuite</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
