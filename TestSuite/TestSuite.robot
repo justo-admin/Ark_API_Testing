@@ -9,13 +9,12 @@ Library               ../Utils/csv_pandas.py
 
 *** Test Cases ***
 
-Get Server Test
-    ${response}=    GET  ${ARK_STAGE_SERVER}
-    Create Session    host_server  ${ARK_STAGE_SERVER}     verify=true
+# Get Server Test
+#     ${response}=    GET  ${ARK_STAGE_SERVER}
+#     Create Session    host_server  ${ARK_STAGE_SERVER}     verify=true
 
 # StagAdmin Login Test 
-#     ${OrgStagAdmin}          Create dictionary  username=${OrgStagAdmin_uid}  password=${OrgStagAdmin_pwd}
-#     ${resp}=    POST On Session    host_server  /api/auth/login  data=${OrgStagAdmin}  expected_status=anything                                                         
+#     ${resp}=    POST On Session    host_server  /api/auth/login  data=${OrgStagAdmin_cred}  expected_status=anything
 #     Status Should Be                 200  ${resp} 
 #     log         ${resp}
 #     log         ${resp.status_code}
@@ -84,6 +83,20 @@ Get Server Test
 #     ${Org_Post_Title1}    Set Variable        ${json['data'][0]['title']}
 #     Should Contain        ${StageOrgPost1_Desc}        ${Org_Post_Title1}
 
+
+# my-todo Test
+#     ${token}    Set Variable         evhmdkyufh
+#     ${params}=    Create Dictionary    status=incomplete
+#     ${resp}=    GET On Session  host_server    /api/todo/my-todo/    params=${params}     headers=${GET_HEADERS}  expected_status=200
+#     Status Should Be                 200  ${resp} 
+#     ${json}=    evaluate    json.loads('''${resp.content}''')    json
+#     log         ${json['data']}
+#     Set Global Variable     ${my-todo_Id1}    ${json['data'][1]['id']} 
+#     Log     ${my-todo_Id1}
+#     ${my-todo-title_Actual}    Set Variable        ${json['data'][1]['title']}
+#     #Should Be Equal    ${my-todo-title}     ${my-todo-title_Actual}
+
+
 # Get Members by Org Based on Type Admin
 #     #${token}=    Set Variable             ycnhhzdxon
 #     ${member_list}=    Get Member by Org and Type    ${Org_Admin_Id1}    1
@@ -137,43 +150,22 @@ Get Server Test
 #     Should Be Equal    ${json['message']}    Success
 #     Set Global Variable         ${generated_post_id1}    ${json['data']['id']} 
 #     Log   ${generated_post_id1}
+
+
  
 Register a New Member Test
     Log    ${new_member}       
     ${mem_info}=    getUserFromFile
     Log    ${mem_info}
-    Set To Dictionary   ${new_member}     firstName=${mem_info}[0]    lastName=${mem_info}[1]
-    ...    email=${mem_info}[3]    password=${mem_info}[4]    phone=${mem_info}[2] 
+    Set To Dictionary   ${new_member}     firstName=${mem_info}[0]    lastName=${mem_info}[1]    phone=${mem_info}[2] 
+    ...    email=${mem_info}[3]    password=${mem_info}[4]    
     Log    ${new_member}
     Log    ${REGISTER_MEMBER_HEADER}
-    # ${resp}=    POST On Session    host_server        /api/auth/register    headers=${REGISTER_MEMBER_HEADER}    json=${new_member}    expected_status=anything
-    # Status Should Be                 200  ${resp} 
-    # ${json}=    evaluate    json.loads('''${resp.content}''')    json
-    # Should Be Equal    ${json['message']}    Success    
-    # ${new_member_data} =    Set Variable    ${json['data']} 
+    ${resp}=    POST On Session    host_server        /api/auth/register    headers=${REGISTER_MEMBER_HEADER}    json=${new_member}    expected_status=anything
+    Status Should Be                 200  ${resp} 
+    ${json}=    evaluate    json.loads('''${resp.content}''')    json
+    Should Be Equal    ${json['message']}    Success    
+    ${new_member_data} =    Set Variable    ${json['data']} 
 
-
-# Quick Get Request With Parameters Test
-#     ${response}=    GET  https://www.google.com/search  params=query=ciao  expected_status=200
-
-# Quick Get A JSON Body Test
-#     ${response}=    GET  https://jsonplaceholder.typicode.com/posts/1
-#     Should Be Equal As Strings    1  ${response.json()}[id]
-
-
-                                                                                                       
-# Get Request Test                                                                                       
-#     Create Session    google  http://www.google.com     
-#     Create Session    jsonplaceholder  https://jsonplaceholder.typicode.com                                               
-                                                                                                       
-#     ${resp_google}=   GET On Session  google  /    expected_status=200                                   
-#     ${resp_json}=     GET On Session  jsonplaceholder  /posts/1                                        
-                                                                                                       
-#     Should Be Equal As Strings          ${resp_google.reason}  OK                                      
-#     Dictionary Should Contain Value     ${resp_json.json()}  sunt aut facere repellat provident occaecati excepturi optio reprehenderit        
-                                                                                                       
-# Post Request Test                                                                                      
-#     &{data}=    Create dictionary  title=Robotframework requests  body=This is a test!  userId=1       
-#     ${resp}=    POST On Session    jsonplaceholder  /posts  json=${data}  expected_status=anything                                                         
-#     Status Should Be                 201  ${resp}                     
-
+Create an Organization
+    

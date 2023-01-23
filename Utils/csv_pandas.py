@@ -17,6 +17,6 @@ def getUserFromFile():
     print(currentUser_firstname, currentUser_lastname, currentUser_mobile, currentUser_email, currentUser_password)
     sourcedf.drop(0,axis=0,inplace=True)
     sourcedf.to_csv(userlist2,index=False)
-    return [currentUser_firstname, currentUser_lastname, currentUser_mobile, currentUser_email, currentUser_password]
+    return [currentUser_firstname, currentUser_lastname, str(currentUser_mobile), currentUser_email, currentUser_password]
 
 #getUserFromFile()
