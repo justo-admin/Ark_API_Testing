@@ -39,6 +39,8 @@ Create an Organization
     #log         ${json}
     Set Global Variable     ${created_org_id}        ${json['data']['id']}
     Log         ${created_org_id}
+    Log To Console         ${created_org_id}
+    
 
 Get Member by Org and Type
     [Arguments]    ${Org_Admin_Id1}    ${MEMBER_TYPE}
@@ -80,7 +82,7 @@ User Login
     log         ${auth_token}
     [Return]    ${auth_token}
 
-Invite a Member to Org
+Invite a User to Org
     [Arguments]    ${ids_to_Invite}    ${role_to_invite}    ${org_id}
     ${invite_body}=    Create Dictionary    emails=${ids_to_Invite}    roleId=${role_to_invite}
     ${resp}=    POST On Session    host_server  /api/organization/${org_id}/invite-member   headers=${POST_HEADER}   json=${invite_body}  expected_status=anything

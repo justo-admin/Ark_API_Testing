@@ -17,9 +17,10 @@ ${role_admin}              ${1}
 ${role_moderator}          ${2}
 ${role_member}             ${3}
 ${post_count}                1
-${groups_needed}              10  
-${posts_needed_in_each_group}   100 
-${posts_needed_in_org}           50
+${groups_needed}              1
+${posts_needed_in_each_group}   1
+${posts_needed_in_org}           1
+${members_needed}                40
 
 #&{OrgStagAdmin_cred}         username=stag@getnada.com  password=stag@0
 # ${OrgStage_Title}            Ark Stag Test

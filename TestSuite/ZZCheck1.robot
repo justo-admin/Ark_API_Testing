@@ -10,6 +10,6 @@ ${loop_cnt}        100
 *** Test Cases ***
 
 Check Loop1
-    FOR    ${counter}    IN RANGE    1    100    
+    FOR    ${counter}    IN RANGE    0    1    
         Log    ${counter}
     END
