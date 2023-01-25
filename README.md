@@ -7,11 +7,10 @@ How to Run
 Set the below variables as required.
 
 Support admin creds
-Members_needed
-Groups_needed
-Org_Posts_needed
-Group_posts_needed
-
+${groups_needed}              ,
+${posts_needed_in_each_group}  ,
+${posts_needed_in_org}           ,
+${members_needed}          ,
 On Windows:
 ------------
 > Python -m robot TestSuite
