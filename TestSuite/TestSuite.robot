@@ -7,7 +7,7 @@ Resource              ../Resources/Variables.robot
 Resource              ../Resources/APIKeywords.robot
 Library               ../Utils/csv_pandas.py
 
-*** Test Cases ***
+# *** Test Cases ***
 
 # Get Server Test
 #     ${response}=    GET  ${ARK_STAGE_SERVER}
@@ -153,19 +153,19 @@ Library               ../Utils/csv_pandas.py
 
 
  
-Register a New Member Test
-    Log    ${new_member}       
-    ${mem_info}=    getUserFromFile
-    Log    ${mem_info}
-    Set To Dictionary   ${new_member}     firstName=${mem_info}[0]    lastName=${mem_info}[1]    phone=${mem_info}[2] 
-    ...    email=${mem_info}[3]    password=${mem_info}[4]    
-    Log    ${new_member}
-    Log    ${REGISTER_MEMBER_HEADER}
-    ${resp}=    POST On Session    host_server        /api/auth/register    headers=${REGISTER_MEMBER_HEADER}    json=${new_member}    expected_status=anything
-    Status Should Be                 200  ${resp} 
-    ${json}=    evaluate    json.loads('''${resp.content}''')    json
-    Should Be Equal    ${json['message']}    Success    
-    ${new_member_data} =    Set Variable    ${json['data']} 
+# Register a New Member Test
+#     Log    ${new_member}       
+#     ${mem_info}=    getUserFromFile
+#     Log    ${mem_info}
+#     Set To Dictionary   ${new_member}     firstName=${mem_info}[0]    lastName=${mem_info}[1]    phone=${mem_info}[2] 
+#     ...    email=${mem_info}[3]    password=${mem_info}[4]    
+#     Log    ${new_member}
+#     Log    ${REGISTER_MEMBER_HEADER}
+#     ${resp}=    POST On Session    host_server        /api/auth/register    headers=${REGISTER_MEMBER_HEADER}    json=${new_member}    expected_status=anything
+#     Status Should Be                 200  ${resp} 
+#     ${json}=    evaluate    json.loads('''${resp.content}''')    json
+#     Should Be Equal    ${json['message']}    Success    
+#     ${new_member_data} =    Set Variable    ${json['data']} 
 
-Create an Organization
+# Create an Organization
     

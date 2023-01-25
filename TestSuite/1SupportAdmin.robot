@@ -22,6 +22,7 @@ Create an Organization Test
     ...    email=testorgr${COUNTER}@getnada.com    website=www.testorgr${COUNTER}.com    phone=990000111${COUNTER}    
     ...    about=Address For Org ${COUNTER} created for testing APIs through Robot 
     Create an Organization     ${new_org} 
+    Log    ${created_org_id}
 
 # Get and Register new Member from File
 #     ${new_member}=   Get a New Member from File
@@ -47,12 +48,13 @@ Invite a User as Admin to Org
     Invite a User to Org    ${ids_to_Invite}    ${role_admin}    ${created_org_id}
 
 AdminUser Login Test 
-    ${user_creds}    Create Dictionary    username=${member_email}    password=${member_password}
-    ${admin_token}=    User Login     ${user_creds}
+    ${creds}    Create Dictionary    username=${member_email}    password=${member_password}
+    Set Global Variable    ${admin_creds}    ${creds}
+    ${admin_token}=    User Login     ${admin_creds}
     Create Auth Header With Token        ${admin_token}
 
 AdminUser Accepting Org Invite
-    User Accepting Org Invite        ${created_org_id}
+    User Accepting Invite        organization    ${created_org_id}
 
 
 

@@ -90,9 +90,9 @@ Invite a User to Org
     ${json}=    evaluate    json.loads('''${resp.content}''')    json
     Should Be Equal         ${json['message']}    Success
     
-User Accepting Org Invite
-    [Arguments]         ${org_id}
-    ${accept_inv_body}    Create Dictionary    invitedFor=organization    inivitedForId=${org_id}
+User Accepting Invite
+    [Arguments]      ${invited_for}       ${invited_for_id}
+    ${accept_inv_body}    Create Dictionary    invitedFor=${invited_for}    inivitedForId=${invited_for_id}
     ${resp}=    PUT On Session    host_server  /api/user/get-pending-invites/accept   
     ...    headers=${POST_HEADER}   json=${accept_inv_body}  expected_status=anything
     Status Should Be                 200  ${resp} 
@@ -102,20 +102,35 @@ User Accepting Org Invite
 
 Get Members in Organization
     [Arguments]        ${org_id}        ${MEMBER_TYPE}
+    ${list1}=    Create List
     #${MEMBER_TYPE}=    Set Variable    ${3}
     ${resp}=    GET On Session    host_server   /api/organization/${org_id}/member/${MEMBER_TYPE}    headers=${GET_HEADERS}     
     Status Should Be                 200  ${resp} 
     ${json}=    evaluate    json.loads('''${resp.content}''')    json
-    [Return]        ${json['data']}
+    ${mem_data}=    Set Variable        ${json['data']}
+    Log    ${mem_data}
+    #${len} =    Get Length    ${mem_data}
+    FOR    ${member}    IN    @{mem_data}
+        Log    ${member['userId']}
+        Append To List    ${list1}    ${member['userId']}
+    END
+    [Return]    ${list1}
 
 Invite Members to Group
     [Arguments]    ${org_id}    ${grp_id}    ${members_list}    ${role_id}
+    Log    ${org_id}, ${grp_id}, ${members_list}, ${role_id}
     ${invite_body}    Create Dictionary    userId=${members_list}    roleId=${role_id}
     ${resp}=    POST On Session    host_server  /api/organization/${org_id}/group/${grp_id}/invite-member   
     ...    headers=${POST_HEADER}   json=${invite_body}  expected_status=anything
     Status Should Be                 200  ${resp} 
     # ${json}=    evaluate    json.loads('''${resp.content}''')    json
     # [Return]        ${json['data']}
+
+Accept Group Invites from All Groups    
+    [Arguments]    ${grp_id_list} 
+    FOR    ${grp_id}    IN    @{grp_id_list}
+        User Accepting Invite    group    ${grp_id}
+    END
 
 Accept Pending Invites for Group    
     [Arguments]    ${grp_id}
@@ -157,4 +172,3 @@ Add Post to Group
         Log    ${grp_post_body} 
         ${post_id} =    Create a Post by Association    ${grp_post_body}
     END
-    
